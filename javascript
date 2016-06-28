@@ -1,5 +1,5 @@
 var lat=0, long,location;
-/*function getLocation(){
+function getLocation(){
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(showPosition);
   //console.log("loc"+location);
@@ -12,8 +12,8 @@ function showPosition(position) {
     //console.log("lat" + lat);
     long = position.coords.longitude;
     //return {latitude:lat,longitude:long};
-  */
-function  getLocation(fn){
+}
+/*function  getLocation(fn){
 if (navigator.geolocation) {
   navigator.geolocation.getCurrentPosition(function(position) {
     $("#latlong").html("latitude: " + position.coords.latitude + "<br>longitude: " + position.coords.longitude);
@@ -27,7 +27,7 @@ if (navigator.geolocation) {
 getLocation(function(location){console.log("loc"+location[0]+location[1]);  });
           
 //console.log("lat2" + lat);
-console.log("loc2"+location[0]+location[1]);
+console.log("loc2"+location[0]+location[1]);*/
 var geocodingAPI = "https://maps.googleapis.com/maps/api/geocode/json?latlng=12.2596572,76.64088129999999&location_type=ROOFTOP&result_type=street_address&key=AIzaSyAYljQ2VnfRg2QMzZUVRNkb-jyrlQ1Vi3M";
 var weatherAPI = "https://api.wunderground.com/api/d595c3c2b957c073/conditions/q/IN/Bangalore.json";
 var city = "";
