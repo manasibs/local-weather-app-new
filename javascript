@@ -1,4 +1,7 @@
 var lat=0, long,location;
+var city = "";
+var state = "";
+var weather = "";
 getLocation();
 //console.log(val);
 function getLocation(){
@@ -38,10 +41,8 @@ function getValues(location){
   long=location.long;
 
 var geocodingAPI = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+long+"&location_type=ROOFTOP&result_type=street_address&key=AIzaSyAYljQ2VnfRg2QMzZUVRNkb-jyrlQ1Vi3M";
-var weatherAPI = "https://api.wunderground.com/api/d595c3c2b957c073/conditions/q/IN/Bangalore.json";
-var city = "";
-var state = "";
-var weather = "";
+
+
 
 $.getJSON(geocodingAPI, function(json) {
   if (json.status == "OK") {
@@ -68,50 +69,84 @@ $.getJSON(geocodingAPI, function(json) {
 
     }
   }
-
+getCityState({city:city,state:state});
 });
-
-
-$.getJSON(weatherAPI, function(json) {
-  console.log(json.current_observation.icon_url);
+  function getCityState(place){
+    city = place.city;
+    state = place.state;
+    if (city.toLowerCase()=='mysuru'){city='mysore';}
+    console.log("inside:"+city+state);
+    var weatherAPI = "https://api.wunderground.com/api/d595c3c2b957c073/conditions/q/"+state+"/"+city+".json";
+    //var weatherAPI = "https://api.wunderground.com/api/d595c3c2b957c073/conditions/q/IN/Bangalore.json";
+    //var weatherAPI = "https://api.wunderground.com/api/d595c3c2b957c073/conditions/q/IN/Mysore.json";
+    $.getJSON(weatherAPI, function(json) {
+      alert(weatherAPI);
+  alert(json.current_observation);
   document.getElementById("temp_f").innerHTML = json.current_observation.temp_f;
   document.getElementById("temp_c").innerHTML = json.current_observation.temp_c;
   document.getElementById("icon").innerHTML = json.current_observation.icon_url;
   document.getElementById("weather").innerHTML = json.current_observation.weather;
   weather = json.current_observation.weather;
+      
   changeBg(weather);
   console.log("weather1" + weather);
 });
+  }
+  //console.log("outside:"+city+state);
+
+
+
 
 /*$( window ).ready(function() {
        changeBg(weather);
   console.log(weather);
    });*/
  }
+function getBg(weatherArr,weather){
+  for(i=0;i<weatherArr.length;i++){
+    var val=new RegExp(weatherArr[i], "gi");
+    alert(weather);
+    alert(val);
+      alert(weather.search(val));
+    if (weather.search(val) > -1){
+      alert (true);
+      return true;
+    }
+  }
+}
 function changeBg(weather) {
   console.log("weather2" + weather);
 
   //var weatherWords=weather.split(" ");
   var fog = ['fog', 'dust', 'sand', 'mist', 'ash', 'haze'];
   var rain = ['rain', 'thunder', 'hail', 'drizzle'];
-  var cloudy = ['Cloud', 'overcast'];
+  var cloudy = ['cloud', 'overcast'];
   var sunny = ['sun'];
   var freeze = ['freez', 'frost'];
   var bool1, bool2, bool3, bool4, bool5;
   bool1 = bool2 = bool3 = bool4 = bool5 = false;
+  console.log("bools" + bool1+bool2+bool3+bool4+bool5);
   var weatherRegex;
   //var re = new RegExp(testing, 'g');
+  var bool1=getBg(fog,weather);
+  var bool2=getBg(rain,weather);
+  var bool3=getBg(cloudy,weather);
+  var bool4=getBg(sunny,weather);
+  var bool5=getBg(freeze,weather);
+  console.log("bools" + bool1+bool2+bool3+bool4+bool5);
 
   _.each(fog, function(val) {
+    weatherRegex=new RegExp(val,"gi");
     if (weather.search(weatherRegex) > -1) bool1 = true;
   });
-  console.log("bool1" + bool1);
+  
   _.each(rain, function(val) {
+    weatherRegex=new RegExp(val,"gi");
     if (weather.search(weatherRegex) > -1) bool2 = true;
   });
 
   _.each(cloudy, function(val) {
-    weatherRegex = /val/gi;
+    weatherRegex=new RegExp(val,"gi");
     console.log("val2" + weatherRegex);
     console.log("val" + val);
     console.log(weather.search(weatherRegex) > -1); {
@@ -121,9 +156,11 @@ function changeBg(weather) {
   });
 
   _.each(sunny, function(val) {
+    weatherRegex=new RegExp(val,"gi");
     if (weather.search(weatherRegex) > -1) bool4 = true;
   });
   _.each(freeze, function(val) {
+    weatherRegex=new RegExp(val,"gi");
     if (weather.search(weatherRegex) > -1) bool5 = true;
   });
   //console.log("bool3"+bool3);
