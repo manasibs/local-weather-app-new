@@ -1,16 +1,40 @@
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js">
+    var icon_url=document.getElementById("icon").innerText;
   </script>
-
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 </head>
 
 <body>
-  <div id="latlong">
-    <h4>You are here:</h4></div>
-  <div id="city"></div>
-  <div id="state"></div>
-  <div id="temp_f"></div>
-  <div id="temp_c"></div>
-  <div id="icon"></div>
-  <div id="weather"></div>
+  <div class="container-fluid">
+    <h1 class="text-center title">Local Weather</h1>
+    <div class="col-md-6 text-center">
+
+    </div>
+
+    <div class="panel panel panel-info">
+      <div class="panel-heading"><button id="unitButton" class="btn btn-primary" onClick=changeTempUnit()><i class="fa fa-eye" aria-hidden="true"></i> °F</button></div>
+
+      <div class="panel-body">
+        
+        <div id=citystate></div>
+        <div id="temp_f" style="display: none"></div>
+        <div id="temp_c" style="display: none"></div>
+        <div id="temp"></div>
+        <div id="icon"> </div>
+
+        <div id="weather"></div>
+        <div id="latlong"><i class="fa fa-compass" aria-hidden="true">Latitude</i>
+          <h4>You are here:</h4></div>
+      </div>
+    </div>
+
+    <div class="center-block">
+      <p><b>View your location on the map</b></p>
+      <div id="mapholder">
+      </div>
+    </div>
+
+
+  </div>
 </body>
