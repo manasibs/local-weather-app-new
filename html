@@ -1,16 +1,57 @@
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js">
+    var icon_url=document.getElementById("icon").innerText;
   </script>
-
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-  <div id="latlong">
-    <h4>You are here:</h4></div>
-  <div id="city"></div>
-  <div id="state"></div>
-  <div id="temp_f"></div>
-  <div id="temp_c"></div>
-  <div id="icon"></div>
-  <div id="weather"></div>
+  <div class="container-fluid">
+    <h1 class="text-center title">Local Weather</h1>
+
+
+    <!--<div>
+      <p class="text-center"><b>View your location on the map</b></p>
+      <div class=" col-md-9 col-md-offset-3" id="mapholder">
+      </div>
+    </div>-->
+
+
+    <div class="row">
+      <div class="col-md-4 col-md-offset-2">
+        <div class="panel panel-default pan">
+          <div class="panel-body">
+
+            <div id=citystate></div>
+            <div id="temp_f" style="display: none"></div>
+            <div id="temp_c" style="display: none"></div>
+            <div id="temp"></div>
+            <div id="icon"> </div>
+
+            <div id="weather"></div>
+            <div id="latlong"><i class="fa fa-compass" aria-hidden="true">Latitude</i>
+              <h4>You are here:</h4></div>
+            <br>
+          </div>
+          <div class="panel-footer clearfix">
+            <div class="pull-right">
+              <button id="unitButton" class="btn btn-primary" onClick=changeTempUnit()><i class="fa fa-eye" aria-hidden="true"></i> °F</button>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+        <div class="col-md-4">
+          <div class="panel panel-default pan">
+            <div class="panel-body">
+              <div class="text-center img-responsive" id="mapholder"> </div>
+            </div>
+          </div>
+
+        </div>
+      
+    </div>
+
 </body>
