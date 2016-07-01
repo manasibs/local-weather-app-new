@@ -1,3 +1,17 @@
-body{
-  
+/* -- import Bootstrap v3 ----------------------------- */
+@import "//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css";
+html {
+  font-size: 1em;
 }
+
+h1 {
+  font-size: 3rem;
+}
+
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+
